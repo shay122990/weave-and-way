@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic"; 
 import Image from "next/image";
+import Link from "next/link";
 
 interface Fabric {
   _id: string;
@@ -27,9 +28,19 @@ export default async function FabricDetailsPage({
   const fabric = await getFabric(params.id);
 
   return (
-    <main className="max-w-3xl mx-auto p-6 bg-white rounded shadow-md">
+    <main className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded shadow-md">
+      {/* Back button */}
+      <div className="mb-6">
+        <Link
+          href="/fabrics"
+          className="inline-block text-sm text-gray-600 hover:text-black transition underline"
+        >
+          ← Back to All Fabrics
+        </Link>
+      </div>
+
       {fabric.image && (
-        <div className="relative w-full h-64 mb-6">
+        <div className="relative w-full h-auto mb-6 mt-2">
           <Image
             width={500}
             height={500}
@@ -39,7 +50,7 @@ export default async function FabricDetailsPage({
           />
         </div>
       )}
-      <h1 className="text-2xl font-bold mb-2">{fabric.name}</h1>
+      <h1 className="text-2xl font-bold mb-2 text-gray-800">{fabric.name}</h1>
       <h2 className="text-lg text-gray-500 mb-4">{fabric.title}</h2>
       <span className="bg-gray-100 text-gray-700 px-3 py-1 text-xs rounded-full">
         Category: {fabric.category}
