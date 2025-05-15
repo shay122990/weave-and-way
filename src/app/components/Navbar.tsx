@@ -42,6 +42,7 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden md:flex justify-center gap-8 text-gray-800 font-medium text-sm">
+            <Link href="/">Home</Link>
             <Link href="/about">About</Link>
             <Link href="/fabrics">Fabrics</Link>
             <Link href="/contact">Contact</Link>
@@ -66,6 +67,7 @@ export default function Navbar() {
         } md:hidden`}
       >
         <nav className="flex flex-col gap-6 text-lg text-gray-800 font-medium">
+          <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
           <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
           <Link href="/fabrics" onClick={() => setMenuOpen(false)}>Fabrics</Link>
           <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
