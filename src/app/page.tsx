@@ -5,7 +5,6 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="relative w-full h-[600px]">
-      {/* Background image */}
       <Image
         src="/home-hero.jpg"
         alt="hero image of fabric"
@@ -13,8 +12,6 @@ export default function Home() {
         className="object-cover"
         priority
       />
-
-      {/* Overlay text */}
       <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-10 text-center px-4">
         <h1 className="text-white text-3xl sm:text-5xl font-bold drop-shadow-lg">
           Sustainable fabrics for conscious creators
@@ -23,8 +20,6 @@ export default function Home() {
           Ethically woven. Mindfully made.
         </p>
       </div>
-
-      {/* Optional: dark overlay to enhance readability */}
       <div className="absolute inset-0 bg-black/30 z-0" />
     </div>
   );
