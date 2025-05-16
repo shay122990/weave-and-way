@@ -20,3 +20,16 @@ export async function POST(req: Request) {
     return new Response("Unknown server error", { status: 500 });
   }
 }
+
+export async function DELETE() {
+  try {
+    await connectDB();
+    await Fabric.deleteMany({});
+    return new Response("All fabrics deleted successfully.", { status: 200 });
+  } catch (error) {
+    if (error instanceof Error) {
+      return new Response("Error deleting fabrics: " + error.message, { status: 500 });
+    }
+    return new Response("Unknown server error", { status: 500 });
+  }
+}
