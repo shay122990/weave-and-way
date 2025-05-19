@@ -29,7 +29,6 @@ export default async function FabricDetailsPage({
 
   return (
     <main className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded shadow-md">
-      {/* Back button */}
       <div className="mb-6">
         <Link
           href="/fabrics"

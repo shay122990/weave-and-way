@@ -10,6 +10,7 @@ interface Fabric {
   category: string;
   description: string;
   image?: string;
+  color?: string;
 }
 
 export default function FabricsClient() {
@@ -50,12 +51,14 @@ export default function FabricsClient() {
       result = result.filter(f => f.category === category);
     }
 
-    if (searchTerm) {
-      result = result.filter(f =>
-        f.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        f.category.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
+   if (searchTerm) {
+  const term = searchTerm.toLowerCase();
+  result = result.filter(f =>
+    f.name.toLowerCase().includes(term) ||
+    f.category.toLowerCase().includes(term) ||
+    f.color?.toLowerCase().includes(term)
+  );
+}
 
     setFiltered(result);
     setCurrentPage(1); 
@@ -67,7 +70,7 @@ export default function FabricsClient() {
   );
 
  return (
-  <div className="flex flex-col md:flex-row bg-black text-white min-h-screen">
+  <div className="flex flex-col md:flex-row bg-white text-black min-h-screen">
     {/* Sidebar */}
     <aside className="md:w-64 w-full md:h-screen bg-black/20 backdrop-blur p-6 border-r border-white/10 sticky top-0 z-10">
       <h2 className="text-2xl font-bold mb-6 tracking-wide">Categories</h2>
@@ -95,10 +98,10 @@ export default function FabricsClient() {
       <div className="mb-6 max-w-xl">
         <input
           type="text"
-          placeholder="Search fabrics..."
+          placeholder="Search by name, category, or color..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-3 rounded-lg border border-white/20 bg-white/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white"
+          className="w-full px-4 py-3 rounded-lg border border-black/20 bg-white/10 text-black placeholder-black/50 focus:outline-none focus:ring-2 focus:ring-white"
         />
       </div>
 
@@ -128,8 +131,8 @@ export default function FabricsClient() {
                   onClick={() => setCurrentPage(i + 1)}
                   className={`px-4 py-2 rounded-lg transition ${
                     currentPage === i + 1
-                      ? "bg-white text-black font-semibold"
-                      : "bg-white/10 hover:bg-white/20 text-white"
+                      ? "bg-black text-white font-semibold"
+                      : "bg-black/10 hover:bg-black/20 text-black"
                   }`}
                 >
                   {i + 1}

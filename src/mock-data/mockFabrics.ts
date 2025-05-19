@@ -1,4 +1,4 @@
-[
+export const mockFabrics = [
     {
       "name": "Cotton Essence 1",
       "title": "Cotton Fabric #1",
@@ -323,7 +323,7 @@
       "name": "Chiffon Essence 1",
       "title": "Chiffon Fabric #1",
       "category": "chiffon",
-      "color": "sky blue",
+      "color": "pink",
       "description": "A beautiful piece of chiffon fabric, perfect for both modern and traditional creations.",
       "image": "/fabrics/chiffon-1.jpg"
     },
@@ -331,14 +331,14 @@
       "name": "Chiffon Essence 2",
       "title": "Chiffon Fabric #2",
       "category": "chiffon",
-      "color": "black",
+      "color": "salmon",
       "description": "A beautiful piece of chiffon fabric, perfect for both modern and traditional creations.",
       "image": "/fabrics/chiffon-2.jpg"
     },
     {
       "name": "Chiffon Essence 3",
       "title": "Chiffon Fabric #3",
-      "category": "chiffon",
+      "category": "green",
       "color": "beige",
       "description": "A beautiful piece of chiffon fabric, perfect for both modern and traditional creations.",
       "image": "/fabrics/chiffon-3.jpg"
@@ -347,7 +347,7 @@
       "name": "Chiffon Essence 4",
       "title": "Chiffon Fabric #4",
       "category": "chiffon",
-      "color": "white",
+      "color": "blue",
       "description": "A beautiful piece of chiffon fabric, perfect for both modern and traditional creations.",
       "image": "/fabrics/chiffon-4.jpg"
     },
@@ -355,7 +355,7 @@
       "name": "Chiffon Essence 5",
       "title": "Chiffon Fabric #5",
       "category": "chiffon",
-      "color": "beige",
+      "color": "white",
       "description": "A beautiful piece of chiffon fabric, perfect for both modern and traditional creations.",
       "image": "/fabrics/chiffon-5.jpg"
     },
@@ -363,7 +363,7 @@
       "name": "Chiffon Essence 6",
       "title": "Chiffon Fabric #6",
       "category": "chiffon",
-      "color": "charcoal",
+      "color": "beige",
       "description": "A beautiful piece of chiffon fabric, perfect for both modern and traditional creations.",
       "image": "/fabrics/chiffon-6.jpg"
     },
@@ -371,7 +371,7 @@
       "name": "Chiffon Essence 7",
       "title": "Chiffon Fabric #7",
       "category": "chiffon",
-      "color": "sky blue",
+      "color": "black",
       "description": "A beautiful piece of chiffon fabric, perfect for both modern and traditional creations.",
       "image": "/fabrics/chiffon-7.jpg"
     },
@@ -379,7 +379,7 @@
       "name": "Chiffon Essence 8",
       "title": "Chiffon Fabric #8",
       "category": "chiffon",
-      "color": "mustard",
+      "color": "blue ombre",
       "description": "A beautiful piece of chiffon fabric, perfect for both modern and traditional creations.",
       "image": "/fabrics/chiffon-8.jpg"
     },
@@ -387,7 +387,7 @@
       "name": "Chiffon Essence 9",
       "title": "Chiffon Fabric #9",
       "category": "chiffon",
-      "color": "ivory",
+      "color": "blue navy",
       "description": "A beautiful piece of chiffon fabric, perfect for both modern and traditional creations.",
       "image": "/fabrics/chiffon-9.jpg"
     },
@@ -395,7 +395,7 @@
       "name": "Chiffon Essence 10",
       "title": "Chiffon Fabric #10",
       "category": "chiffon",
-      "color": "sky blue",
+      "color": "teal",
       "description": "A beautiful piece of chiffon fabric, perfect for both modern and traditional creations.",
       "image": "/fabrics/chiffon-10.jpg"
     }
