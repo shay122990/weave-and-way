@@ -338,7 +338,7 @@ export const mockFabrics = [
     {
       "name": "Chiffon Essence 3",
       "title": "Chiffon Fabric #3",
-      "category": "green",
+      "category": "chiffon",
       "color": "beige",
       "description": "A beautiful piece of chiffon fabric, perfect for both modern and traditional creations.",
       "image": "/fabrics/chiffon-3.jpg"
