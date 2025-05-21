@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import HomeIntro from "./components/Home-Intro";
 
 export default function Home() {
   const [categories, setCategories] = useState<string[]>([]);
@@ -58,6 +59,7 @@ export default function Home() {
         </div>
         <div className="absolute inset-0 bg-black/30 z-0" />
       </div>
+      <HomeIntro/>
     </>
   );
 }
