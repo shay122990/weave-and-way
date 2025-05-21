@@ -40,7 +40,7 @@ export default function Contact() {
           </div>
           <div className="rounded-xl overflow-hidden shadow-md">
             <Image
-              src="/images/contact/map.jpg"
+              src="/contact/map.jpg"
               alt="Map"
               width={600}
               height={400}
