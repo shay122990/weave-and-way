@@ -1,5 +1,5 @@
 "use client";
-
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaInstagram, FaPinterest } from "react-icons/fa";
 
@@ -10,12 +10,6 @@ const navLinks = [
   { name: "Privacy Policy", href: "/privacy" },
 ];
 
-const fabricLinks = [
-  { name: "Cotton", href: "/fabrics/#cotton" },
-  { name: "Linen", href: "/fabrics/#linen" },
-  { name: "Satin", href: "/fabrics/#satin" },
-  { name: "Silk", href: "/fabrics/#silk" },
-];
 
 const socialLinks = [
   { name: "Instagram", href: "#", icon: <FaInstagram size={24} /> },
@@ -23,6 +17,22 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+ const [categories, setCategories] = useState<string[]>([]);
+
+   useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("/api/fabric-categories");
+        const data = await res.json();
+        setCategories(data);
+      } catch (err) {
+        console.error("Failed to fetch categories:", err);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+    
   return (
     <footer className="bg-white text-black py-10 px-6 mt-20">
       <div className="mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -47,10 +57,10 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-2">Popular Fabrics</h3>
           <ul className="space-y-1 text-gray-500">
-            {fabricLinks.map((link) => (
-              <li key={link.name}>
-                <Link href={link.href} className="hover:text-green-900 transition">
-                  {link.name}
+            {categories.map((category) => (
+              <li key={category}>
+                <Link href={`/fabrics?category=${encodeURIComponent(category)}`} className="hover:text-green-900 transition">
+                  {category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()}
                 </Link>
               </li>
             ))}

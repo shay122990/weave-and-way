@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="py-16 px-6 max-w-6xl mx-auto">
+      <section className="py-6 px-6 bg-white">
         {categories.length === 0 ? (
           <p className="text-center text-gray-500">Loading categories...</p>
         ) : (
@@ -32,7 +32,7 @@ export default function Home() {
               <Link
                 key={category}
                 href={`/fabrics?category=${encodeURIComponent(category)}`}
-                className="px-4 py-2 bg-black text-white rounded uppercase  hover:bg-white hover:text-black border border-black transition"
+                className="px-4 py-2  text-black rounded uppercase  hover:text-[#40826D]"
               >
                 {category}
               </Link>
