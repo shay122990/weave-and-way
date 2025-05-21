@@ -23,7 +23,6 @@ export default function Home() {
 
   return (
     <>
-     {/* Categories */}
       <section className="py-16 px-6 max-w-6xl mx-auto">
         {categories.length === 0 ? (
           <p className="text-center text-gray-500">Loading categories...</p>
@@ -41,7 +40,6 @@ export default function Home() {
           </div>
         )}
       </section>
-      {/* Hero */}
       <div className="relative w-full h-[600px]">
         <Image
           src="/home-hero.jpg"
