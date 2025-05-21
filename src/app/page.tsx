@@ -60,6 +60,14 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/30 z-0" />
       </div>
       <HomeIntro/>
+      <div className="relative w-full h-[500px]">
+        <Image
+          src="/home-1.webp"
+          alt="fabrics image"
+          fill
+          className="object-cover"
+        />
+      </div>
     </>
   );
 }
