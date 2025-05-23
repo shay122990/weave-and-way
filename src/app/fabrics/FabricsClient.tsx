@@ -102,10 +102,7 @@ export default function FabricsClient() {
           ))}
         </ul>
       </aside>
-
-      {/* Main Content */}
       <main className="flex-1 p-6 md:p-10">
-        {/* Search Input */}
         <div className="mb-6 max-w-xl">
           <input
             type="text"
@@ -116,26 +113,22 @@ export default function FabricsClient() {
           />
         </div>
 
-        {/* Loading */}
         {loading ? (
           <p className="text-center text-gray-400 text-lg">Loading fabrics...</p>
         ) : (
           <>
-            {/* Fabric Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {paginated.map((fabric) => (
                 <FabricCard key={fabric._id} {...fabric} />
               ))}
             </div>
 
-            {/* No Results */}
             {paginated.length === 0 && (
               <p className="text-center text-gray-500 mt-10">
                 No fabrics found.
               </p>
             )}
 
-            {/* Pagination */}
             {filtered.length > ITEMS_PER_PAGE && (
               <div className="flex justify-center mt-10 gap-2 flex-wrap">
                 {Array.from({

@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic"; 
-import Image from "next/image";
 import Link from "next/link";
+import FabricZoomImage from "../components/FabricZoomImage";
 
 interface Fabric {
   _id: string;
@@ -39,15 +39,9 @@ export default async function FabricDetailsPage({
       </div>
 
       {fabric.image && (
-        <div className="relative w-full h-auto mb-6 mt-2">
-          <Image
-            width={500}
-            height={500}
-            src={fabric.image}
-            alt={fabric.name}
-            className="object-cover w-full h-full rounded"
-          />
-        </div>
+       <div className="mb-6 mt-2">
+        <FabricZoomImage src={fabric.image} alt={fabric.name} />
+      </div>
       )}
       <h1 className="text-2xl font-bold mb-2 text-gray-800">{fabric.name}</h1>
       <h2 className="text-lg text-gray-500 mb-4">{fabric.title}</h2>
