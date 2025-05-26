@@ -18,23 +18,23 @@ const popularCategories: FabricCategory[] = [
 
 export default function PopularFabrics() {
   return (
-    <section className="py-6 px-4">
-      <h2 className="text-xl font-semibold mb-4">Most Popular Fabrics</h2>
+    <section className="py-6 px-4 text-center">
+      <h2 className="text-2xl font-semibold mb-6">Most Popular Fabrics</h2>
       <div className="overflow-x-auto">
-        <div className="flex space-x-4 min-w-max">
+        <div className="flex justify-center space-x-6 min-w-max">
           {popularCategories.map((category) => (
             <div
               key={category.id}
-              className="flex-shrink-0 w-48 bg-white rounded shadow p-2 hover:shadow-md transition"
+              className="flex-shrink-0 w-100 bg-white text-black rounded shadow p-4 hover:shadow-md transition"
             >
               <Image
                 src={category.image}
                 alt={category.name}
-                width={192}
-                height={192}
-                className="w-full h-40 object-cover rounded"
+                width={456}
+                height={456}
+                className="w-full h-96 object-cover rounded"
               />
-              <h3 className="mt-2 font-medium text-sm text-center">{category.name}</h3>
+              <h3 className="mt-4 font-medium text-base text-center">{category.name}</h3>
             </div>
           ))}
         </div>

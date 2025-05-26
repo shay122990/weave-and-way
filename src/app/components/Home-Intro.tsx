@@ -20,7 +20,7 @@ const introData = [
 
 export default function HomeIntro() {
   return (
-    <section className="px-4 py-12 text-white">
+    <section className="px-4 py-20 text-white">
       <div className="grid gap-10 sm:grid-cols-3 text-center">
         {introData.map(({ icon, title, text }, i) => (
           <div key={i} className="flex items-center flex-col gap-6">
