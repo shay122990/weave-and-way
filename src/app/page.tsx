@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import HomeIntro from "./components/Home-Intro";
+import PopularFabrics from "./components/PopularFabrics";
 
 export default function Home() {
   const [categories, setCategories] = useState<string[]>([]);
@@ -60,14 +61,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/30 z-0" />
       </div>
       <HomeIntro/>
-      <div className="relative w-full h-[500px]">
-        <Image
-          src="/home-1.webp"
-          alt="fabrics image"
-          fill
-          className="object-cover"
-        />
-      </div>
+      <PopularFabrics/>
     </>
   );
 }
