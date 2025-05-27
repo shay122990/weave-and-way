@@ -42,7 +42,7 @@ export default function Home() {
           </div>
         )}
       </section>
-      <div className="relative w-full h-[600px]">
+      <div className="relative w-full h-[400px] md:h-[600px]">
         <Image
           src="/home-hero.jpg"
           alt="hero image of fabric"
