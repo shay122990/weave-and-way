@@ -2,10 +2,17 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const linkClass = (path: string) =>
+    `pb-1 border-b-2 ${
+      pathname === path ? "border-green-900" : "border-transparent"
+    } hover:border-black transition-colors`;
 
   return (
     <>
@@ -37,10 +44,10 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden md:flex justify-center gap-8 text-gray-800 font-medium text-sm">
-            <Link href="/">Home</Link>
-            <Link href="/about">About</Link>
-            <Link href="/fabrics">Fabrics</Link>
-            <Link href="/contact">Contact</Link>
+            <Link href="/" className={linkClass("/")}>Home</Link>
+            <Link href="/about" className={linkClass("/about")}>About</Link>
+            <Link href="/fabrics" className={linkClass("/fabrics")}>Fabrics</Link>
+            <Link href="/contact" className={linkClass("/contact")}>Contact</Link>
           </div>
         </div>
 
@@ -54,26 +61,26 @@ export default function Navbar() {
         </div>
       </nav>
 
-        <div
-            className={`fixed top-0 left-0 z-50 w-64 h-full bg-white shadow-lg p-6 transform transition-transform duration-300 ease-in-out ${
-              menuOpen ? "translate-x-0" : "-translate-x-full"
-            } md:hidden`}
-          >
-            <button
-              onClick={() => setMenuOpen(false)}
-              className="absolute top-4 right-4 text-2xl font-bold text-gray-800"
-              aria-label="Close menu"
-            >
-              ×
-            </button>
+      <div
+        className={`fixed top-0 left-0 z-50 w-64 h-full bg-white shadow-lg p-6 transform transition-transform duration-300 ease-in-out ${
+          menuOpen ? "translate-x-0" : "-translate-x-full"
+        } md:hidden`}
+      >
+        <button
+          onClick={() => setMenuOpen(false)}
+          className="absolute top-4 right-4 text-2xl font-bold text-gray-800"
+          aria-label="Close menu"
+        >
+          ×
+        </button>
 
-            <nav className="mt-12 flex flex-col gap-6 text-lg text-gray-800 font-medium">
-              <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
-              <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
-              <Link href="/fabrics" onClick={() => setMenuOpen(false)}>Fabrics</Link>
-              <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
-            </nav>
-          </div>
+        <nav className="mt-12 flex flex-col gap-6 text-lg text-gray-800 font-medium">
+          <Link href="/" className={linkClass("/")} onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link href="/about" className={linkClass("/about")} onClick={() => setMenuOpen(false)}>About</Link>
+          <Link href="/fabrics" className={linkClass("/fabrics")} onClick={() => setMenuOpen(false)}>Fabrics</Link>
+          <Link href="/contact" className={linkClass("/contact")} onClick={() => setMenuOpen(false)}>Contact</Link>
+        </nav>
+      </div>
     </>
   );
 }
