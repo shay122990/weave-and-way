@@ -34,7 +34,7 @@ export default function Home() {
               <Link
                 key={category}
                 href={`/fabrics?category=${encodeURIComponent(category)}`}
-                className="px-4 py-2  text-black rounded uppercase  hover:text-[#40826D]"
+                className="px-1 md:px-4 py-2 text-sm md:text-lg text-black rounded uppercase  hover:text-[#40826D]"
               >
                 {category}
               </Link>
