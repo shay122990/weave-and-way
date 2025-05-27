@@ -29,7 +29,7 @@ export default function Home() {
         {categories.length === 0 ? (
           <p className="text-center text-gray-500">Loading categories...</p>
         ) : (
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4 lg:gap-20">
             {categories.map((category) => (
               <Link
                 key={category}
