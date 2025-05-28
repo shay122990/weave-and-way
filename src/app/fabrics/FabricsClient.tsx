@@ -99,6 +99,14 @@ export default function FabricsClient() {
       </aside>
 
       <main className="flex-1 p-6 sm:p-8 md:p-10 space-y-8">
+        <div className="mb-8 text-center md:text-left">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+            Explore Our Fabrics
+          </h1>
+          <p className="mt-2 text-gray-600 max-w-md">
+            Discover high-quality fabrics across all styles and categories. Use the filters to find your perfect material.
+          </p>
+        </div>
         <div className="max-w-2xl">
           <input
             type="text"
