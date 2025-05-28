@@ -27,7 +27,6 @@ export default function FabricsClient() {
   const [loading, setLoading] = useState(true);
   const ITEMS_PER_PAGE = 10;
 
-  // Fetch all fabrics
   useEffect(() => {
     const fetchFabrics = async () => {
       setLoading(true);
@@ -40,20 +39,17 @@ export default function FabricsClient() {
       const allCategories = Array.from(
         new Set(data.map((f: Fabric) => f.category))
       ) as string[];
-
       setCategories(["all", ...allCategories]);
     };
 
     fetchFabrics();
   }, []);
 
-  // Sync category with URL (if it changes)
   useEffect(() => {
     const urlCategory = searchParams.get("category") || "all";
     setCategory(urlCategory);
   }, [searchParams]);
 
-  // Apply filters
   useEffect(() => {
     let result = fabrics;
 
@@ -72,7 +68,7 @@ export default function FabricsClient() {
     }
 
     setFiltered(result);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   }, [category, searchTerm, fabrics]);
 
   const paginated = filtered.slice(
@@ -81,19 +77,18 @@ export default function FabricsClient() {
   );
 
   return (
-    <div className="flex flex-col md:flex-row bg-white text-black min-h-screen">
-      {/* Sidebar */}
-      <aside className="md:w-64 w-full md:h-screen bg-black/20 backdrop-blur p-6 border-r border-white/10 sticky top-0 z-10">
-        <h2 className="text-2xl font-bold mb-6 tracking-wide">Categories</h2>
+    <div className="flex flex-col md:flex-row min-h-screen bg-white text-black">
+      <aside className="md:w-64 w-full md:h-screen bg-gradient-to-b from-[#f5f7fa] to-[#c3cfe2] p-6 border-r border-gray-300 shadow-inner sticky top-0 z-10">
+        <h2 className="text-xl font-bold mb-4 tracking-wide text-gray-800 uppercase">Categories</h2>
         <ul className="space-y-2">
           {categories.map((cat) => (
             <li key={cat}>
               <button
                 onClick={() => setCategory(cat)}
-                className={`capitalize w-full text-left px-4 py-2 rounded-lg transition-all duration-200 ${
+                className={`w-full text-left px-4 py-2 rounded-lg capitalize transition duration-200 font-medium ${
                   category === cat
-                    ? "bg-white text-black font-semibold"
-                    : "hover:bg-white/10"
+                    ? "bg-[#2c3e50] text-white shadow-md"
+                    : "text-gray-700 hover:bg-[#ecf0f1] hover:text-black"
                 }`}
               >
                 {cat}
@@ -102,14 +97,15 @@ export default function FabricsClient() {
           ))}
         </ul>
       </aside>
-      <main className="flex-1 p-6 md:p-10">
-        <div className="mb-6 max-w-xl">
+
+      <main className="flex-1 p-6 sm:p-8 md:p-10 space-y-8">
+        <div className="max-w-2xl">
           <input
             type="text"
             placeholder="Search by name, category, or color..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-4 py-3 rounded-lg border border-black/20 bg-white/10 text-black placeholder-black/50 focus:outline-none focus:ring-2 focus:ring-white"
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-black"
           />
         </div>
 
@@ -117,30 +113,30 @@ export default function FabricsClient() {
           <p className="text-center text-gray-400 text-lg">Loading fabrics...</p>
         ) : (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {paginated.map((fabric) => (
                 <FabricCard key={fabric._id} {...fabric} />
               ))}
             </div>
 
             {paginated.length === 0 && (
-              <p className="text-center text-gray-500 mt-10">
+              <p className="text-center text-gray-500 mt-10 text-lg">
                 No fabrics found.
               </p>
             )}
 
             {filtered.length > ITEMS_PER_PAGE && (
-              <div className="flex justify-center mt-10 gap-2 flex-wrap">
+              <div className="flex justify-center mt-8 gap-2 flex-wrap">
                 {Array.from({
                   length: Math.ceil(filtered.length / ITEMS_PER_PAGE),
                 }).map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setCurrentPage(i + 1)}
-                    className={`px-4 py-2 rounded-lg transition ${
+                    className={`w-10 h-10 rounded-full transition text-sm font-medium ${
                       currentPage === i + 1
-                        ? "bg-black text-white font-semibold"
-                        : "bg-black/10 hover:bg-black/20 text-black"
+                        ? "bg-black text-white"
+                        : "bg-gray-200 hover:bg-black/10"
                     }`}
                   >
                     {i + 1}
