@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import FabricCard from "@/app/components/FabricCard";
+import MoodBoard from "./components/MoodBoard";
 
 interface Fabric {
   _id: string;
@@ -31,14 +32,14 @@ export default function FabricsClient() {
     const fetchFabrics = async () => {
       setLoading(true);
       const res = await fetch("/api/fabrics");
-      const data = await res.json();
+      const data = (await res.json()) as Fabric[];
       setFabrics(data);
       setFiltered(data);
       setLoading(false);
 
       const allCategories = Array.from(
         new Set(data.map((f: Fabric) => f.category))
-      ) as string[];
+      );
       setCategories(["all", ...allCategories]);
     };
 
@@ -78,8 +79,14 @@ export default function FabricsClient() {
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-white text-black">
-      <aside className="md:w-64 w-full md:h-screen bg-gradient-to-b from-[#f5f7fa] to-[#c3cfe2] p-6 border-r border-gray-300 shadow-inner sticky top-0 z-10">
-        <h2 className="text-xl font-bold mb-4 tracking-wide text-gray-800 uppercase">Categories</h2>
+      <aside className="md:w-64 w-full md:h-screen bg-gradient-to-b from-[#f5f7fa] to-[#c3cfe2]/50 p-6 border-r border-gray-300 shadow-inner sticky top-0 z-10">
+        <div className="mb-6">
+          <MoodBoard fabrics={fabrics} />
+        </div>
+
+        <h2 className="text-xl font-bold mb-4 tracking-wide text-gray-800 uppercase">
+          Categories
+        </h2>
         <ul className="space-y-2">
           {categories.map((cat) => (
             <li key={cat}>
@@ -107,6 +114,7 @@ export default function FabricsClient() {
             Discover high-quality fabrics across all styles and categories. Use the filters to find your perfect material.
           </p>
         </div>
+
         <div className="max-w-2xl">
           <input
             type="text"
