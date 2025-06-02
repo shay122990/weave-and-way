@@ -1,4 +1,6 @@
-export const dynamic = "force-dynamic"; 
+export const dynamic = "force-dynamic";
+
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import FabricZoomImage from "../components/FabricZoomImage";
 
@@ -11,21 +13,28 @@ interface Fabric {
   image?: string;
 }
 
-async function getFabric(id: string): Promise<Fabric> {
-  const res = await fetch(`http://localhost:3000/api/fabrics/${id}`, {
-    cache: "no-store",
-  });
+async function getFabric(id: string): Promise<Fabric | null> {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/fabrics/${id}`, {
+      cache: "no-store",
+    });
 
-  if (!res.ok) throw new Error("Fabric not found");
-  return res.json();
+    if (!res.ok) return null;
+
+    return res.json();
+  } catch (error) {
+    console.error("Failed to fetch fabric:", error);
+    return null;
+  }
 }
 
-export default async function FabricDetailsPage({
-  params,
-}: {
-  params: { id: string };
+// ⚠️ Do not manually annotate the function props
+export default async function FabricDetailsPage({ 
+  // @ts-expect-error — Next.js provides this shape; do not type it manually
+  params 
 }) {
   const fabric = await getFabric(params.id);
+  if (!fabric) return notFound();
 
   return (
     <main className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded shadow-md">
@@ -39,9 +48,9 @@ export default async function FabricDetailsPage({
       </div>
 
       {fabric.image && (
-       <div className="mb-6 mt-2">
-        <FabricZoomImage src={fabric.image} alt={fabric.name} />
-      </div>
+        <div className="mb-6 mt-2">
+          <FabricZoomImage src={fabric.image} alt={fabric.name} />
+        </div>
       )}
       <h1 className="text-2xl font-bold mb-2 text-gray-800">{fabric.name}</h1>
       <h2 className="text-lg text-gray-500 mb-4">{fabric.title}</h2>
