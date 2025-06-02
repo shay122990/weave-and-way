@@ -4,7 +4,7 @@ import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-// ✅ GET /api/fabrics/:id
+// GET /api/fabrics/:id
 export async function GET(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -18,7 +18,7 @@ export async function GET(
   return Response.json(fabric);
 }
 
-// ✅ PUT /api/fabrics/:id
+// PUT /api/fabrics/:id
 export async function PUT(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -27,13 +27,15 @@ export async function PUT(
   await connectDB();
 
   const body = await request.json();
-  const updatedFabric = await Fabric.findByIdAndUpdate(id, body, { new: true });
+  const updatedFabric = await Fabric.findByIdAndUpdate(id, body, {
+    new: true,
+  });
 
   if (!updatedFabric) return new Response("Not found", { status: 404 });
   return Response.json(updatedFabric);
 }
 
-// ✅ DELETE /api/fabrics/:id
+// DELETE /api/fabrics/:id
 export async function DELETE(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 
 interface FabricProps {
   _id: string;
@@ -12,7 +12,7 @@ interface FabricProps {
 }
 
 export default function FabricCard({
-  _id,
+  // _id,
   name,
   color,
   image,
@@ -35,13 +35,13 @@ export default function FabricCard({
       </div>
 
       <h2 className="text-lg font-semibold text-black mt-1">{name}</h2>
-
+{/* 
        <Link
         href={`/fabrics/${_id}`}
         className="inline-block text-sm text-black hover:text-black/25 transition underline"
       >
         View More Details →
-      </Link>
+      </Link> */}
     </div>
   );
 }
