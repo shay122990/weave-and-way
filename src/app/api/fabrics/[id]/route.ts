@@ -4,44 +4,45 @@ import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-// GET
-export async function GET(req: NextRequest, 
-  // @ts-expect-error - Next.js infers `context`, do not annotate
-  context
+// GET /api/fabrics/:id
+export async function GET(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
-  const { id } = context.params;
-
+  const { id } = await context.params;
   await connectDB();
+
   const fabric = await Fabric.findById(id);
   if (!fabric) return new Response("Not found", { status: 404 });
 
   return Response.json(fabric);
 }
 
-// PUT
-export async function PUT(req: NextRequest, 
-  // @ts-expect-error - Next.js infers `context`, do not annotate
-  context
+// PUT /api/fabrics/:id
+export async function PUT(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
-  const { id } = context.params;
-
+  const { id } = await context.params;
   await connectDB();
-  const body = await req.json();
 
-  const updated = await Fabric.findByIdAndUpdate(id, body, { new: true });
-  if (!updated) return new Response("Not found", { status: 404 });
+  const body = await request.json();
+  const updatedFabric = await Fabric.findByIdAndUpdate(id, body, {
+    new: true,
+  });
 
-  return Response.json(updated);
+  if (!updatedFabric) return new Response("Not found", { status: 404 });
+  return Response.json(updatedFabric);
 }
 
-// DELETE
-export async function DELETE(req: NextRequest, 
-  // @ts-expect-error - Next.js infers `context`, do not annotate
-  context
+// DELETE /api/fabrics/:id
+export async function DELETE(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
-  const { id } = context.params;
-
+  const { id } = await context.params;
   await connectDB();
+
   const deleted = await Fabric.findByIdAndDelete(id);
   if (!deleted) return new Response("Not found", { status: 404 });
 

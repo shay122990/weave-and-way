@@ -20,7 +20,6 @@ async function getFabric(id: string): Promise<Fabric | null> {
     });
 
     if (!res.ok) return null;
-
     return res.json();
   } catch (error) {
     console.error("Failed to fetch fabric:", error);
@@ -28,12 +27,15 @@ async function getFabric(id: string): Promise<Fabric | null> {
   }
 }
 
-// ⚠️ Do not manually annotate the function props
-export default async function FabricDetailsPage({ 
-  // @ts-expect-error — Next.js provides this shape; do not type it manually
-  params 
+// ✅ Final Next.js 15.3.3-compliant page
+export default async function FabricDetailsPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
 }) {
-  const fabric = await getFabric(params.id);
+  const { id } = await params;
+
+  const fabric = await getFabric(id);
   if (!fabric) return notFound();
 
   return (

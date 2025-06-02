@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import FabricCard from "@/app/components/FabricCard";
+import FabricCard from "@/app/fabrics/components/FabricCard";
 import MoodBoard from "./components/MoodBoard";
 
 interface Fabric {
