@@ -4,6 +4,8 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import FabricCard from "@/app/fabrics/components/FabricCard";
 import MoodBoard from "./components/MoodBoard";
+export const dynamic = "force-dynamic";
+
 
 interface Fabric {
   _id: string;
