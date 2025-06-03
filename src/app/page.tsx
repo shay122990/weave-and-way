@@ -1,47 +1,13 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import CategoriesNav from "./components/CategoriesNav";
 import HomeIntro from "./components/Home-Intro";
 import PopularFabrics from "./components/PopularFabrics";
 
 export default function Home() {
-  const [categories, setCategories] = useState<string[]>([]);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await fetch("/api/fabric-categories");
-        const data = await res.json();
-        setCategories(data);
-      } catch (err) {
-        console.error("Failed to fetch categories:", err);
-      }
-    };
-
-    fetchCategories();
-  }, []);
-
   return (
     <>
-      <section className="py-6 px-6 bg-white">
-        {categories.length === 0 ? (
-          <p className="text-center text-gray-500">Loading categories...</p>
-        ) : (
-          <div className="flex  justify-center gap-2 lg:gap-20">
-            {categories.map((category) => (
-              <Link
-                key={category}
-                href={`/fabrics?category=${encodeURIComponent(category)}`}
-                className="px-1 md:px-4 py-2 text-sm md:text-lg text-black rounded uppercase  hover:text-[#40826D]"
-              >
-                {category}
-              </Link>
-            ))}
-          </div>
-        )}
-      </section>
+      <CategoriesNav />
+      
       <div className="relative w-full h-[400px] md:h-[600px]">
         <Image
           src="/home-hero.jpg"
@@ -60,8 +26,9 @@ export default function Home() {
         </div>
         <div className="absolute inset-0 bg-black/30 z-0" />
       </div>
-      <HomeIntro/>
-      <PopularFabrics/>
+
+      <HomeIntro />
+      <PopularFabrics />
     </>
   );
 }
