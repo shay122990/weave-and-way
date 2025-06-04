@@ -23,7 +23,7 @@ export default function Navbar() {
         />
       )}
 
-      <nav className="sticky top-0 z-50 bg-white w-full px-4 sm:px-8 py-4 border-b border-gray-200 flex items-center justify-between">
+      <nav className="bg-white w-full px-4 sm:px-8 py-4 border-b border-gray-200 flex items-center justify-between">
         <div className="md:flex md:items-center md:gap-4 w-1/3">
           <div className="md:hidden">
             <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
