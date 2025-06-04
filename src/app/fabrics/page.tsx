@@ -7,7 +7,6 @@ import MoodBoard from "./components/MoodBoard";
 export const dynamic = "force-dynamic";
 import Image from "next/image";
 
-
 interface Fabric {
   _id: string;
   name: string;
@@ -29,6 +28,8 @@ export default function Fabrics() {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [sideMenuOpen, setSideMenuOpen] = useState(false);
+
   const ITEMS_PER_PAGE = 10;
 
   useEffect(() => {
@@ -40,9 +41,7 @@ export default function Fabrics() {
       setFiltered(data);
       setLoading(false);
 
-      const allCategories = Array.from(
-        new Set(data.map((f: Fabric) => f.category))
-      );
+      const allCategories = Array.from(new Set(data.map((f) => f.category)));
       setCategories(["all", ...allCategories]);
     };
 
@@ -101,24 +100,37 @@ export default function Fabrics() {
         <div className="absolute inset-0 bg-black/30 z-0" />
       </div>
 
-      <div className="flex flex-col md:flex-row min-h-screen bg-white text-black">
-      <aside className="md:w-64 w-full md:h-screen bg-gradient-to-b from-[#f5f7fa] to-[#c3cfe2]/50 p-6 border-r border-gray-300 shadow-inner sticky top-0 z-10">
-        <div className="mb-6">
-          <MoodBoard fabrics={fabrics} />
+      <button
+        onClick={() => setSideMenuOpen(true)}
+        className="fixed top-1/2 left-0 transform -translate-y-1/2 z-40 bg-black text-white px-3 py-2 rounded-r-lg shadow-lg hover:bg-gray-800 block md:hidden"
+      >
+        ☰
+      </button>
+      <div
+        className={`fixed top-0 left-0 h-full w-2/3 max-w-xs bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50
+        ${sideMenuOpen ? "translate-x-0" : "-translate-x-full"} block md:hidden`}
+      >
+        <div className="p-6 border-b flex justify-between items-center">
+          <h2 className="text-lg font-bold">Categories</h2>
+          <button
+            onClick={() => setSideMenuOpen(false)}
+            className="text-gray-600 text-2xl"
+          >
+            ×
+          </button>
         </div>
-
-        <h2 className="text-xl font-bold mb-4 tracking-wide text-gray-800 uppercase">
-          Categories
-        </h2>
-        <ul className="space-y-2">
+        <ul className="p-4 space-y-2">
           {categories.map((cat) => (
             <li key={cat}>
               <button
-                onClick={() => setCategory(cat)}
+                onClick={() => {
+                  setCategory(cat);
+                  setSideMenuOpen(false);
+                }}
                 className={`w-full text-left px-4 py-2 rounded-lg capitalize transition duration-200 font-medium ${
                   category === cat
-                    ? "bg-[#2c3e50] text-white shadow-md"
-                    : "text-gray-700 hover:bg-[#ecf0f1] hover:text-black"
+                    ? "bg-black text-white"
+                    : "text-gray-700 hover:bg-gray-100"
                 }`}
               >
                 {cat}
@@ -126,68 +138,110 @@ export default function Fabrics() {
             </li>
           ))}
         </ul>
-      </aside>
+      </div>
 
-      <main className="flex-1 p-6 sm:p-8 md:p-10 space-y-8">
-        <div className="mb-8 text-center md:text-left">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-            Explore Our Fabrics
-          </h1>
-          <p className="mt-2 text-gray-600 max-w-md">
-            Discover high-quality fabrics across all styles and categories. Use the filters to find your perfect material.
-          </p>
-        </div>
+      {sideMenuOpen && (
+        <div
+          onClick={() => setSideMenuOpen(false)}
+          className="fixed inset-0 bg-black/30 z-40 block md:hidden"
+        />
+      )}
 
-        <div className="max-w-2xl">
-          <input
-            type="text"
-            placeholder="Search by name, category, or color..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-black"
-          />
-        </div>
+      <div className="flex flex-col md:flex-row bg-white text-black">
+        <aside
+          className={`md:w-64 w-full md:h-screen bg-gradient-to-b from-[#f5f7fa] to-[#c3cfe2]/50 p-6 border-r border-gray-300 shadow-inner 
+          ${sideMenuOpen ? "block" : "hidden"} md:block sticky top-0 z-10`}
+        >
+          <div className="mb-6">
+            <MoodBoard fabrics={fabrics} />
+          </div>
 
-        {loading ? (
-          <p className="text-center text-gray-400 text-lg">Loading fabrics...</p>
-        ) : (
-          <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {paginated.map((fabric) => (
-                <FabricCard key={fabric._id} {...fabric} />
-              ))}
-            </div>
+          <h2 className="text-xl font-bold mb-4 tracking-wide text-gray-800 uppercase">
+            Categories
+          </h2>
+          <ul className="space-y-2">
+            {categories.map((cat) => (
+              <li key={cat}>
+                <button
+                  onClick={() => {
+                    setCategory(cat);
+                    setSideMenuOpen(false); 
+                  }}
+                  className={`w-full text-left px-4 py-2 rounded-lg capitalize transition duration-200 font-medium ${
+                    category === cat
+                      ? "bg-[#2c3e50] text-white shadow-md"
+                      : "text-gray-700 hover:bg-[#ecf0f1] hover:text-black"
+                  }`}
+                >
+                  {cat}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </aside>
 
-            {paginated.length === 0 && (
-              <p className="text-center text-gray-500 mt-10 text-lg">
-                No fabrics found.
-              </p>
-            )}
+        <main className="flex-1 p-6 sm:p-8 md:p-10 space-y-8">
+          <div className="mb-8 text-center md:text-left">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+              Explore Our Fabrics
+            </h1>
+            <p className="mt-2 text-gray-600 max-w-md">
+              Discover high-quality fabrics across all styles and categories. Use
+              the filters to find your perfect material.
+            </p>
+          </div>
 
-            {filtered.length > ITEMS_PER_PAGE && (
-              <div className="flex justify-center mt-8 gap-2 flex-wrap">
-                {Array.from({
-                  length: Math.ceil(filtered.length / ITEMS_PER_PAGE),
-                }).map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentPage(i + 1)}
-                    className={`w-10 h-10 rounded-full transition text-sm font-medium ${
-                      currentPage === i + 1
-                        ? "bg-black text-white"
-                        : "bg-gray-200 hover:bg-black/10"
-                    }`}
-                  >
-                    {i + 1}
-                  </button>
+          <div className="max-w-2xl">
+            <input
+              type="text"
+              placeholder="Search by name, category, or color..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
+
+          {loading ? (
+            <p className="text-center text-gray-400 text-lg">
+              Loading fabrics...
+            </p>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {paginated.map((fabric) => (
+                  <FabricCard key={fabric._id} {...fabric} />
                 ))}
               </div>
-            )}
-          </>
-        )}
-      </main>
+
+              {paginated.length === 0 && (
+                <p className="text-center text-gray-500 mt-10 text-lg">
+                  No fabrics found.
+                </p>
+              )}
+
+              {filtered.length > ITEMS_PER_PAGE && (
+                <div className="flex justify-center mt-8 gap-2 flex-wrap">
+                  {Array.from({
+                    length: Math.ceil(filtered.length / ITEMS_PER_PAGE),
+                  }).map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentPage(i + 1)}
+                      className={`w-10 h-10 rounded-full transition text-sm font-medium ${
+                        currentPage === i + 1
+                          ? "bg-black text-white"
+                          : "bg-gray-200 hover:bg-black/10"
+                      }`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+        </main>
+      </div>
     </div>
-    </div>
-    
   );
 }

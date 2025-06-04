@@ -27,7 +27,6 @@ export default function MoodBoard({ fabrics, max = 6 }: MoodBoardProps) {
 
   return (
     <div className="mb-6">
-      <h3 className="text-sm text-gray-700 font-semibold mb-2">Moodboard</h3>
       <div className="flex gap-2 overflow-x-auto pb-1">
         {swatches.map((fabric) => (
           <div
