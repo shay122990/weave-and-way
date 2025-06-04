@@ -7,7 +7,6 @@ export default function Home() {
   return (
     <>
       <CategoriesNav />
-      
       <div className="relative w-full h-[400px] md:h-[600px]">
         <Image
           src="/home-hero.jpg"
