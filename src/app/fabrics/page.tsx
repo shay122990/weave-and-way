@@ -83,7 +83,7 @@ export default function Fabrics() {
     <div>
       <div className="relative w-full h-[400px] md:h-[600px]">
         <Image
-          src="/about/about-1.jpg"
+          src="/fabrics.jpg"
           alt="hero image of fabric"
           fill
           className="object-cover"
