@@ -2,7 +2,7 @@
 
 **Weave & Way** is a modern fabric catalog web application that allows users to explore a curated collection of textiles by category and detail. Admins can securely manage the fabric database using a protected dashboard with full CRUD capabilities.
 
----
+## ![Project Image](./public/weave&way.webp)
 
 ## ✨ Features
 
@@ -63,10 +63,12 @@ Set up your .env file with:
 MONGODB_URI=your_mongodb_connection_string
 NEXT_PUBLIC_SITE_URL=your_deployment_url
 ADMIN_SECRET=your_admin_password_or_key
+JWT_SECRET=your_key
+
 Start the dev server
 npm run dev
 
-🧑‍💻 Future Improvements
+## 🧑‍💻 Future Improvements
 
 🌍 Category pages with SEO
 
