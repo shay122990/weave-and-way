@@ -9,7 +9,7 @@
 - 🔎 Browse fabrics by **category** or **search**
 - 📄 View detailed fabric information with name, title, description, and image
 - 🔐 **Admin panel** with **authentication**
-- ✅ Admin can **Create, Read, Update, Delete** fabrics
+- ✅ Admin can **Create, Read, Update, Delete** fabrics , upload image , upload json file or add individual fabric
 - ⚙️ RESTful API endpoints with **MongoDB + Mongoose**
 - 🖼️ Image support for each fabric with dynamic rendering
 
