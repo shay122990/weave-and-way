@@ -167,11 +167,11 @@ export default function AdminPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-1 bg-white text-black p-4 rounded shadow space-y-4">
           <h2 className="font-semibold text-lg">{editingId ? 'Edit Fabric' : 'Add Fabric'}</h2>
-          <input name="name" placeholder="ex: Silk Essence 1" value={form.name} onChange={handleChange} className="p-2 border rounded w-full" />
-          <input name="title" placeholder="ex: Silk Essence #1" value={form.title} onChange={handleChange} className="p-2 border rounded w-full" />
-          <input name="category" placeholder="ex: silk" value={form.category} onChange={handleChange} className="p-2 border rounded w-full" />
+          <input name="name" placeholder="Name: ex. Silk Essence 1" value={form.name} onChange={handleChange} className="p-2 border rounded w-full" />
+          <input name="title" placeholder="Title: ex. Silk Essence #1" value={form.title} onChange={handleChange} className="p-2 border rounded w-full" />
+          <input name="category" placeholder="Category: ex. silk" value={form.category} onChange={handleChange} className="p-2 border rounded w-full" />
           <input name="image" placeholder="/fabrics/your-image.jpg" value={form.image} onChange={handleChange} className="p-2 border rounded w-full"/>
-          <input name="color" placeholder="ex: white" value={form.color} onChange={handleChange} className="p-2 border rounded w-full" />
+          <input name="color" placeholder="Color: ex. white" value={form.color} onChange={handleChange} className="p-2 border rounded w-full" />
           <textarea name="description" placeholder="Description" value={form.description} onChange={handleChange} className="p-2 border rounded w-full" rows={3} />
           <button onClick={handleAddOrUpdateFabric} className="w-full bg-black text-white py-2 rounded hover:bg-gray-800">
             {editingId ? 'Update Fabric' : 'Add Fabric'}
