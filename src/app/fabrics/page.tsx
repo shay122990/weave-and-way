@@ -126,6 +126,7 @@ export default function Fabrics() {
                 onClick={() => {
                   setCategory(cat);
                   setSideMenuOpen(false);
+                  window.scrollTo({ top: 400, behavior: "smooth" });
                 }}
                 className={`w-full text-left px-4 py-2 rounded-lg capitalize transition duration-200 font-medium ${
                   category === cat
