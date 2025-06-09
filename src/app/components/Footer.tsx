@@ -34,17 +34,17 @@ export default function Footer() {
   }, []);
     
   return (
-    <footer className="bg-white text-black py-10 px-6 mt-20">
+    <footer className="bg-black text-white py-10 px-6 mt-20">
       <div className="mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         <div>
           <h2 className="text-xl font-bold mb-2">Weave & Way</h2>
-          <p className="text-gray-500">
+          <p className="text-gray-100">
             Sustainable fabrics for conscious creators.
           </p>
         </div>
         <div>
           <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
-          <ul className="space-y-1 text-gray-500">
+          <ul className="space-y-1 text-gray-100">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <Link href={link.href} className="hover:text-green-900 transition">
