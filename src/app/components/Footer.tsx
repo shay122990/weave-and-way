@@ -56,7 +56,7 @@ export default function Footer() {
         </div>
         <div>
           <h3 className="text-lg font-semibold mb-2">Popular Fabrics</h3>
-          <ul className="space-y-1 text-gray-500">
+          <ul className="space-y-1 text-gray-100">
             {categories.map((category) => (
               <li key={category}>
                 <Link href={`/fabrics?category=${encodeURIComponent(category)}`} className="hover:text-green-900 transition">
