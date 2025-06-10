@@ -1,11 +1,12 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import {useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import FabricCard from "@/app/fabrics/components/FabricCard";
 import MoodBoard from "./components/MoodBoard";
-export const dynamic = "force-dynamic";
 import Image from "next/image";
+
+export const dynamic = "force-dynamic";
 
 interface Fabric {
   _id: string;
@@ -19,6 +20,8 @@ interface Fabric {
 
 export default function Fabrics() {
   const searchParams = useSearchParams();
+  const router = useRouter();
+
   const initialCategory = searchParams.get("category") || "all";
 
   const [fabrics, setFabrics] = useState<Fabric[]>([]);
@@ -78,9 +81,16 @@ export default function Fabrics() {
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
+    const handleCategoryChange = (cat: string) => {
+    setCategory(cat);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("category", cat);
+    router.replace(`/fabrics?${params.toString()}`, { scroll: false });
+  };
 
   return (
     <div>
+      {/* hero */}
       <div className="relative w-full h-[400px] md:h-[600px]">
         <Image
           src="/fabrics.jpg"
@@ -99,7 +109,7 @@ export default function Fabrics() {
         </div>
         <div className="absolute inset-0 bg-black/30 z-0" />
       </div>
-
+      {/* mobile fabric menu */}
       <button
         onClick={() => setSideMenuOpen(true)}
         className="fixed top-1/2 left-0 transform -translate-y-1/2 z-40 bg-black text-white px-3 py-2 rounded-r-lg shadow-lg hover:bg-gray-800 block md:hidden"
@@ -119,12 +129,13 @@ export default function Fabrics() {
             ×
           </button>
         </div>
+        {/* mobile categories */}
         <ul className="p-4 space-y-2">
           {categories.map((cat) => (
             <li key={cat}>
               <button
                 onClick={() => {
-                  setCategory(cat);
+                  handleCategoryChange(cat);
                   setSideMenuOpen(false);
                   window.scrollTo({ top: 400, behavior: "smooth" });
                 }}
@@ -147,7 +158,7 @@ export default function Fabrics() {
           className="fixed inset-0 bg-black/30 z-40 block md:hidden"
         />
       )}
-
+      {/* dekstop sidebar */}
       <div className="flex flex-col md:flex-row bg-white text-black">
         <aside
           className={`md:w-64 w-full md:h-screen bg-gradient-to-b from-[#f5f7fa] to-[#c3cfe2]/50 p-6 border-r border-gray-300 shadow-inner 
@@ -165,8 +176,8 @@ export default function Fabrics() {
               <li key={cat}>
                 <button
                   onClick={() => {
-                    setCategory(cat);
-                    setSideMenuOpen(false); 
+                    handleCategoryChange(cat);
+                    setSideMenuOpen(false);
                   }}
                   className={`w-full text-left px-4 py-2 rounded-lg capitalize transition duration-200 font-medium ${
                     category === cat
@@ -180,7 +191,7 @@ export default function Fabrics() {
             ))}
           </ul>
         </aside>
-
+            {/* fabrics display */}
         <main className="flex-1 p-6 sm:p-8 md:p-10 space-y-8">
           <div className="mb-8 text-center md:text-left">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">

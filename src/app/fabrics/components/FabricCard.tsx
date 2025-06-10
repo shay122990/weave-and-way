@@ -1,11 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 interface FabricProps {
   _id: string;
   name: string;
   title: string;
-  category: string;
   description: string;
   image?: string;
   color?: string;
@@ -17,6 +19,9 @@ export default function FabricCard({
   color,
   image,
 }: FabricProps) {
+  const searchParams = useSearchParams();
+  const currentCategory = searchParams.get("category") || "all";
+
   return (
     <div className="bg-white/5 border border-white/10 rounded-xl shadow hover:shadow-xl transition p-4 text-black space-y-4">
       {image && (
@@ -38,7 +43,7 @@ export default function FabricCard({
       <h2 className="text-lg font-semibold text-black mt-1">{name}</h2>
 
       <Link
-        href={`/fabrics/${_id}`}
+        href={`/fabrics/${_id}?category=${encodeURIComponent(currentCategory)}`}
         className="inline-block text-sm text-black hover:text-black/25 transition underline"
       >
         View More Details →

@@ -26,26 +26,28 @@ async function getFabric(id: string): Promise<Fabric | null> {
     return null;
   }
 }
-
 //  Next.js 15.3.3-compliant page (change when bug is fixed)
-export default async function FabricDetailsPage({
-  params,
-}: {
+export default async function FabricDetailsPage(props: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ category?: string }>;
 }) {
-  const { id } = await params;
+  const { id } = await props.params;
+  const { category } = await props.searchParams;
 
   const fabric = await getFabric(id);
   if (!fabric) return notFound();
+
+  const categoryQuery = category ? `?category=${encodeURIComponent(category)}` : "";
 
   return (
     <main className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded shadow-md">
       <div className="mb-6">
         <Link
-          href="/fabrics"
+          href={`/fabrics/${categoryQuery}`}
           className="inline-block text-sm text-gray-600 hover:text-black transition underline"
+          
         >
-          ← Back to All Fabrics
+          ← Back to {category || "all"} fabrics
         </Link>
       </div>
 
