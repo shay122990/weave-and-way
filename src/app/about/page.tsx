@@ -3,6 +3,30 @@
 import Image from "next/image";
 
 export default function About() {
+  const features = [
+    {
+      src: "/about/about-3.jpg",
+      alt: "Fabric selection",
+      title: "Curated Selection",
+      description:
+        "We handpick textiles that inspire, sourced from artisans and mills worldwide.",
+    },
+    {
+      src: "/about/about-4.jpg",
+      alt: "Quality control",
+      title: "Quality Control",
+      description:
+        "Each piece is inspected to meet our standard of durability, texture, and color integrity.",
+    },
+    {
+      src: "/about/about-5.jpg",
+      alt: "Shipping fabric",
+      title: "Fast & Thoughtful Shipping",
+      description:
+        "We package your orders with care and efficiency — arriving at your doorstep ready to inspire.",
+    },
+  ];
+
   return (
     <section className="bg-white text-gray-800">
       <div className="relative w-full h-[400px] md:h-[600px] overflow-hidden">
@@ -22,6 +46,7 @@ export default function About() {
           </h1>
         </div>
       </div>
+
       <div className="max-w-5xl mx-auto px-6 py-16 text-center">
         <h2 className="text-2xl md:text-4xl font-semibold mb-6">
           Weaving Elegance into Every Thread
@@ -33,6 +58,7 @@ export default function About() {
           designer, maker, or visionary, our fabrics bring your ideas to life.
         </p>
       </div>
+
       <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto px-6 pb-20">
         <div>
           <Image
@@ -55,56 +81,26 @@ export default function About() {
           </p>
         </div>
       </div>
+
       <div className="bg-gray-100 py-16">
         <div className="max-w-6xl mx-auto px-6">
           <h3 className="text-xl md:text-2xl font-semibold mb-10 text-center">
             From Thread to Touch
           </h3>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <Image
-                src="/about/about-3.jpg"
-                alt="Fabric selection"
-                width={300}
-                height={200}
-                className="rounded-xl mx-auto mb-4"
-              />
-              <h4 className="font-medium text-lg mb-2">Curated Selection</h4>
-              <p className="text-sm text-gray-600">
-                We handpick textiles that inspire, sourced from artisans and
-                mills worldwide.
-              </p>
-            </div>
-            <div className="text-center">
-              <Image
-                src="/about/about-4.jpg"
-                alt="Quality control"
-                width={300}
-                height={200}
-                className="rounded-xl mx-auto mb-4"
-              />
-              <h4 className="font-medium text-lg mb-2">Quality Control</h4>
-              <p className="text-sm text-gray-600">
-                Each piece is inspected to meet our standard of durability,
-                texture, and color integrity.
-              </p>
-            </div>
-            <div className="text-center">
-              <Image
-                src="/about/about-5.jpg"
-                alt="Shipping fabric"
-                width={300}
-                height={200}
-                className="rounded-xl mx-auto mb-4"
-              />
-              <h4 className="font-medium text-lg mb-2">
-                Fast & Thoughtful Shipping
-              </h4>
-              <p className="text-sm text-gray-600">
-                We package your orders with care and efficiency — arriving at
-                your doorstep ready to inspire.
-              </p>
-            </div>
+            {features.map(({ src, alt, title, description }) => (
+              <div key={alt} className="text-center">
+                <Image
+                  src={src}
+                  alt={alt}
+                  width={300}
+                  height={300}
+                  className="rounded-xl h-[200px] mx-auto mb-4"
+                />
+                <h4 className="font-medium text-lg mb-2">{title}</h4>
+                <p className="text-sm text-gray-600">{description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
