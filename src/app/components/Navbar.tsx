@@ -26,36 +26,61 @@ export default function Navbar() {
       <nav className="bg-white w-full px-4 sm:px-8 py-4 border-b border-gray-200 flex items-center justify-between">
         <div className="md:flex md:items-center md:gap-4 w-1/3">
           <div className="md:hidden">
-            <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle menu"
+            >
               <span className="block w-6 h-0.5 bg-black mb-1" />
               <span className="block w-6 h-0.5 bg-black mb-1" />
               <span className="block w-6 h-0.5 bg-black" />
             </button>
           </div>
 
-          <Link href="/" className="hidden md:block font-bold text-xl tracking-wide text-gray-900">
+          <Link
+            href="/"
+            className="hidden md:block font-bold text-xl tracking-wide text-gray-900"
+          >
             WEAVE & WAY
           </Link>
         </div>
 
         <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 w-1/3 text-center">
-          <Link href="/" className="block md:hidden font-bold text-lg tracking-wide text-gray-900">
+          <Link
+            href="/"
+            className="block md:hidden font-bold text-lg tracking-wide text-gray-900"
+          >
             WEAVE & WAY
           </Link>
 
           <div className="hidden md:flex justify-center gap-8 text-gray-800 font-medium text-sm">
-            <Link href="/" className={linkClass("/")}>Home</Link>
-            <Link href="/about" className={linkClass("/about")}>About</Link>
-            <Link href="/fabrics" className={linkClass("/fabrics")}>Fabrics</Link>
-            <Link href="/contact" className={linkClass("/contact")}>Contact</Link>
+            <Link href="/" className={linkClass("/")}>
+              Home
+            </Link>
+            <Link href="/about" className={linkClass("/about")}>
+              About
+            </Link>
+            <Link href="/fabrics" className={linkClass("/fabrics")}>
+              Fabrics
+            </Link>
+            <Link href="/contact" className={linkClass("/contact")}>
+              Contact
+            </Link>
           </div>
         </div>
 
         <div className="flex justify-end items-center w-1/3 gap-4 text-gray-700 text-lg">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaInstagram />
           </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaFacebookF />
           </a>
         </div>
@@ -75,10 +100,34 @@ export default function Navbar() {
         </button>
 
         <nav className="mt-12 flex flex-col gap-6 text-lg text-gray-800 font-medium">
-          <Link href="/" className={linkClass("/")} onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link href="/about" className={linkClass("/about")} onClick={() => setMenuOpen(false)}>About</Link>
-          <Link href="/fabrics" className={linkClass("/fabrics")} onClick={() => setMenuOpen(false)}>Fabrics</Link>
-          <Link href="/contact" className={linkClass("/contact")} onClick={() => setMenuOpen(false)}>Contact</Link>
+          <Link
+            href="/"
+            className={linkClass("/")}
+            onClick={() => setMenuOpen(false)}
+          >
+            Home
+          </Link>
+          <Link
+            href="/about"
+            className={linkClass("/about")}
+            onClick={() => setMenuOpen(false)}
+          >
+            About
+          </Link>
+          <Link
+            href="/fabrics"
+            className={linkClass("/fabrics")}
+            onClick={() => setMenuOpen(false)}
+          >
+            Fabrics
+          </Link>
+          <Link
+            href="/contact"
+            className={linkClass("/contact")}
+            onClick={() => setMenuOpen(false)}
+          >
+            Contact
+          </Link>
         </nav>
       </div>
     </>

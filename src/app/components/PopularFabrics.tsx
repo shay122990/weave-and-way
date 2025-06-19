@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
+import Image from "next/image";
 
 interface FabricCategory {
   id: number;
@@ -9,11 +9,11 @@ interface FabricCategory {
 }
 
 const popularCategories: FabricCategory[] = [
-  { id: 1, name: 'Cotton', image: '/popular/cotton.webp' },
-  { id: 2, name: 'Linen', image: '/popular/linen.jpg' },
-  { id: 3, name: 'Satin', image: '/popular/satin.webp' },
-  { id: 4, name: 'Silk', image: '/popular/silk.webp' },
-  { id: 5, name: 'Crepe', image: '/popular/crepe.webp' },
+  { id: 1, name: "Cotton", image: "/popular/cotton.webp" },
+  { id: 2, name: "Linen", image: "/popular/linen.jpg" },
+  { id: 3, name: "Satin", image: "/popular/satin.webp" },
+  { id: 4, name: "Silk", image: "/popular/silk.webp" },
+  { id: 5, name: "Crepe", image: "/popular/crepe.webp" },
 ];
 
 export default function PopularFabrics() {
@@ -34,7 +34,9 @@ export default function PopularFabrics() {
                 height={456}
                 className="w-full h-86 lg:h-96 object-cover rounded"
               />
-              <h3 className="mt-4 font-medium text-base text-center">{category.name}</h3>
+              <h3 className="mt-4 font-medium text-base text-center">
+                {category.name}
+              </h3>
             </div>
           ))}
         </div>

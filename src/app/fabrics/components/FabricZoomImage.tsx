@@ -1,9 +1,15 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useState } from 'react';
+import Image from "next/image";
+import { useState } from "react";
 
-export default function FabricZoomImage({ src, alt }: { src: string; alt: string }) {
+export default function FabricZoomImage({
+  src,
+  alt,
+}: {
+  src: string;
+  alt: string;
+}) {
   const [isHovering, setIsHovering] = useState(false);
 
   return (
@@ -18,7 +24,7 @@ export default function FabricZoomImage({ src, alt }: { src: string; alt: string
         src={src}
         alt={alt}
         className={`w-full h-full object-cover transition-transform duration-300 ${
-          isHovering ? 'scale-150' : 'scale-100'
+          isHovering ? "scale-150" : "scale-100"
         }`}
       />
     </div>

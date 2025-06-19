@@ -1,6 +1,6 @@
 "use client";
 
-import {useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import FabricCard from "@/app/fabrics/components/FabricCard";
 import MoodBoard from "./components/MoodBoard";
@@ -81,7 +81,7 @@ export default function Fabrics() {
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
-    const handleCategoryChange = (cat: string) => {
+  const handleCategoryChange = (cat: string) => {
     setCategory(cat);
     const params = new URLSearchParams(searchParams.toString());
     params.set("category", cat);
@@ -191,15 +191,15 @@ export default function Fabrics() {
             ))}
           </ul>
         </aside>
-            {/* fabrics display */}
+        {/* fabrics display */}
         <main className="flex-1 p-6 sm:p-8 md:p-10 space-y-8">
           <div className="mb-8 text-center md:text-left">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
               Explore Our Fabrics
             </h1>
             <p className="mt-2 text-gray-600 max-w-md">
-              Discover high-quality fabrics across all styles and categories. Use
-              the filters to find your perfect material.
+              Discover high-quality fabrics across all styles and categories.
+              Use the filters to find your perfect material.
             </p>
           </div>
 

@@ -15,9 +15,12 @@ interface Fabric {
 
 async function getFabric(id: string): Promise<Fabric | null> {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/fabrics/${id}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SITE_URL}/api/fabrics/${id}`,
+      {
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) return null;
     return res.json();
@@ -37,7 +40,9 @@ export default async function FabricDetailsPage(props: {
   const fabric = await getFabric(id);
   if (!fabric) return notFound();
 
-  const categoryQuery = category ? `?category=${encodeURIComponent(category)}` : "";
+  const categoryQuery = category
+    ? `?category=${encodeURIComponent(category)}`
+    : "";
 
   return (
     <main className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded shadow-md">
@@ -45,7 +50,6 @@ export default async function FabricDetailsPage(props: {
         <Link
           href={`/fabrics/${categoryQuery}`}
           className="inline-block text-sm text-gray-600 hover:text-black transition underline"
-          
         >
           ← Back to {category || "all"} fabrics
         </Link>

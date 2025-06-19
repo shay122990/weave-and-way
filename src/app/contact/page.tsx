@@ -6,7 +6,9 @@ import { useState } from "react";
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -21,15 +23,32 @@ export default function Contact() {
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">Get in Touch</h1>
         <p className="text-gray-600 max-w-xl mx-auto">
-          We’d love to hear from you — whether it’s about a project, a partnership, or a fabric you’ve fallen in love with.
+          We’d love to hear from you — whether it’s about a project, a
+          partnership, or a fabric you’ve fallen in love with.
         </p>
       </div>
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
         <div className="space-y-8">
           <div>
             <h2 className="text-xl font-semibold">Contact Details</h2>
-            <p>Email: <a href="mailto:hello@weaveandway.com" className="text-blue-500 hover:underline">hello@weaveandway.com</a></p>
-            <p>Phone: <a href="tel:+971500000000" className="text-blue-500 hover:underline">+971 50 000 0000</a></p>
+            <p>
+              Email:{" "}
+              <a
+                href="mailto:hello@weaveandway.com"
+                className="text-blue-500 hover:underline"
+              >
+                hello@weaveandway.com
+              </a>
+            </p>
+            <p>
+              Phone:{" "}
+              <a
+                href="tel:+971500000000"
+                className="text-blue-500 hover:underline"
+              >
+                +971 50 000 0000
+              </a>
+            </p>
             <p>Location: Dubai, United Arab Emirates</p>
           </div>
           <div>

@@ -11,7 +11,9 @@ export default async function CategoriesNav() {
   });
 
   if (!res.ok) {
-    return <p className="text-center text-gray-500">Failed to load categories.</p>;
+    return (
+      <p className="text-center text-gray-500">Failed to load categories.</p>
+    );
   }
 
   const categories: string[] = await res.json();

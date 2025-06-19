@@ -13,12 +13,7 @@ interface FabricProps {
   color?: string;
 }
 
-export default function FabricCard({
-  _id,
-  name,
-  color,
-  image,
-}: FabricProps) {
+export default function FabricCard({ _id, name, color, image }: FabricProps) {
   const searchParams = useSearchParams();
   const currentCategory = searchParams.get("category") || "all";
 

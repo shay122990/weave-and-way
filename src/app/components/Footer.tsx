@@ -10,16 +10,15 @@ const navLinks = [
   { name: "Privacy Policy", href: "/privacy" },
 ];
 
-
 const socialLinks = [
   { name: "Instagram", href: "#", icon: <FaInstagram size={24} /> },
   { name: "Pinterest", href: "#", icon: <FaPinterest size={24} /> },
 ];
 
 export default function Footer() {
- const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchCategories = async () => {
       try {
         const res = await fetch("/api/fabric-categories");
@@ -32,7 +31,7 @@ export default function Footer() {
 
     fetchCategories();
   }, []);
-    
+
   return (
     <footer className="bg-black text-white py-10 px-6 mt-20">
       <div className="mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -47,7 +46,10 @@ export default function Footer() {
           <ul className="space-y-1 text-gray-100">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <Link href={link.href} className="hover:text-green-900 transition">
+                <Link
+                  href={link.href}
+                  className="hover:text-green-900 transition"
+                >
                   {link.name}
                 </Link>
               </li>
@@ -59,8 +61,12 @@ export default function Footer() {
           <ul className="space-y-1 text-gray-100">
             {categories.map((category) => (
               <li key={category}>
-                <Link href={`/fabrics?category=${encodeURIComponent(category)}`} className="hover:text-green-900 transition">
-                  {category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()}
+                <Link
+                  href={`/fabrics?category=${encodeURIComponent(category)}`}
+                  className="hover:text-green-900 transition"
+                >
+                  {category.charAt(0).toUpperCase() +
+                    category.slice(1).toLowerCase()}
                 </Link>
               </li>
             ))}
