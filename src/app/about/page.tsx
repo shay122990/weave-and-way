@@ -90,13 +90,15 @@ export default function About() {
           <div className="grid md:grid-cols-3 gap-8">
             {features.map(({ src, alt, title, description }) => (
               <div key={alt} className="text-center">
-                <Image
-                  src={src}
-                  alt={alt}
-                  width={300}
-                  height={300}
-                  className="rounded-xl h-[200px] mx-auto mb-4"
-                />
+                <div className="w-[200px] h-[200px] lg:w-[300px] lg:h-[300px] mx-auto mb-4 overflow-hidden rounded-xl">
+                  <Image
+                    src={src}
+                    alt={alt}
+                    width={300}
+                    height={300}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <h4 className="font-medium text-lg mb-2">{title}</h4>
                 <p className="text-sm text-gray-600">{description}</p>
               </div>
