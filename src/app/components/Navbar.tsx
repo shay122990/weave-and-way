@@ -73,6 +73,7 @@ export default function Navbar() {
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Visit our Instagram page"
           >
             <FaInstagram />
           </a>
@@ -80,6 +81,7 @@ export default function Navbar() {
             href="https://facebook.com"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Visit our Facebook page"
           >
             <FaFacebookF />
           </a>
