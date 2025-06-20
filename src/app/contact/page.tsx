@@ -67,10 +67,14 @@ export default function Contact() {
             />
           </div>
         </div>
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block mb-1 font-medium">Name</label>
+            <label htmlFor="name" className="block mb-1 font-medium">
+              Name
+            </label>
             <input
+              id="name"
               type="text"
               name="name"
               value={form.name}
@@ -81,8 +85,11 @@ export default function Contact() {
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">Email</label>
+            <label htmlFor="email" className="block mb-1 font-medium">
+              Email
+            </label>
             <input
+              id="email"
               type="email"
               name="email"
               value={form.email}
@@ -93,8 +100,11 @@ export default function Contact() {
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">Message</label>
+            <label htmlFor="message" className="block mb-1 font-medium">
+              Message
+            </label>
             <textarea
+              id="message"
               name="message"
               rows={5}
               value={form.message}
