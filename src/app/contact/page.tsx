@@ -12,10 +12,28 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", form);
-    // TODO: integrate with EmailJS, or custom backend
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Message sent!");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        alert(data.error || "Something went wrong.");
+      }
+    } catch (error) {
+      console.error("Email sending error:", error);
+      alert("Failed to send message.");
+    }
   };
 
   return (
