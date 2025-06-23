@@ -52,7 +52,7 @@ export default function Contact() {
             <p>
               Email:{" "}
               <a
-                href="mailto:hello@weaveandway.com"
+                href="mailto:demo.shay.dev@gmail.com"
                 className="text-blue-500 hover:underline"
               >
                 hello@weaveandway.com
@@ -134,7 +134,7 @@ export default function Contact() {
 
           <button
             type="submit"
-            className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-900 transition"
+            className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-green-500 transition"
           >
             Send Message
           </button>
