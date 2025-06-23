@@ -2,6 +2,7 @@ import Image from "next/image";
 import CategoriesNav from "./components/CategoriesNav";
 import HomeIntro from "./components/Home-Intro";
 import PopularFabrics from "./components/PopularFabrics";
+import FeaturedCollections from "./components/FeaturedCollections";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
 
       <HomeIntro />
       <PopularFabrics />
+      <FeaturedCollections />
     </>
   );
 }
