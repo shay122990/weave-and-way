@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -22,18 +23,30 @@ export default function Contact() {
         body: JSON.stringify(form),
       });
 
-      const data = await res.json();
-
       if (res.ok) {
-        alert("Message sent!");
+        setStatus("success");
         setForm({ name: "", email: "", message: "" });
       } else {
-        alert(data.error || "Something went wrong.");
+        setStatus("error");
       }
     } catch (error) {
       console.error("Email sending error:", error);
-      alert("Failed to send message.");
+      setStatus("error");
     }
+
+    setTimeout(() => setStatus("idle"), 2500);
+  };
+
+  const getButtonText = () => {
+    if (status === "success") return "Message Sent!";
+    if (status === "error") return "Failed to Send";
+    return "Send Message";
+  };
+
+  const getButtonClasses = () => {
+    if (status === "success") return "bg-green-600";
+    if (status === "error") return "bg-red-600";
+    return "bg-black hover:bg-green-500";
   };
 
   return (
@@ -45,6 +58,7 @@ export default function Contact() {
           partnership, or a fabric you’ve fallen in love with.
         </p>
       </div>
+
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
         <div className="space-y-8">
           <div>
@@ -134,9 +148,10 @@ export default function Contact() {
 
           <button
             type="submit"
-            className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-green-500 transition"
+            disabled={status === "success"}
+            className={`w-full text-white py-3 rounded-lg font-semibold transition ${getButtonClasses()}`}
           >
-            Send Message
+            {getButtonText()}
           </button>
         </form>
       </div>
