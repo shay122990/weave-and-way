@@ -35,10 +35,7 @@ export default function FeaturedCollections() {
 
       <div className="grid gap-8 md:grid-cols-3">
         {collections.map(({ id, title, description, image }) => (
-          <div
-            key={id}
-            className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition"
-          >
+          <div key={id} className=" overflow-hidden border-b-2">
             <div className="relative w-full h-64">
               <Image
                 src={image}
