@@ -181,8 +181,8 @@ export default function Fabrics() {
                   }}
                   className={`w-full text-left px-4 py-2 rounded-lg capitalize transition duration-200 font-medium ${
                     category === cat
-                      ? "bg-[#2c3e50] text-white shadow-md"
-                      : "text-gray-700 hover:bg-[#ecf0f1] hover:text-black"
+                      ? "bg-cyan-900 text-white shadow-md"
+                      : "text-gray-900 hover:bg-[#ecf0f1] hover:text-black"
                   }`}
                 >
                   {cat}
