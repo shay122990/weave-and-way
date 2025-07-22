@@ -39,7 +39,7 @@ export default function FabricCard({ _id, name, color, image }: FabricProps) {
 
       <Link
         href={`/fabrics/${_id}?category=${encodeURIComponent(currentCategory)}`}
-        className="inline-block text-sm text-black hover:text-black/25 transition underline"
+        className="inline-block text-sm text-black hover:text-cyan-700 transition underline"
       >
         View More Details →
       </Link>
