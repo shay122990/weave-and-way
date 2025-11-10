@@ -46,7 +46,7 @@ export default function Contact() {
   const getButtonClasses = () => {
     if (status === "success") return "bg-green-600";
     if (status === "error") return "bg-red-600";
-    return "bg-black hover:bg-green-500";
+    return "bg-black hover:bg-purple-900";
   };
 
   return (
