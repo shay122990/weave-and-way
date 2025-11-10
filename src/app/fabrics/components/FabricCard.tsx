@@ -20,12 +20,12 @@ export default function FabricCard({ _id, name, color, image }: FabricProps) {
   return (
     <div className="bg-white/5 border border-white/10 rounded-xl shadow hover:shadow-xl transition p-4 text-black space-y-4">
       {image && (
-        <div className="relative w-full aspect-square rounded overflow-hidden">
+        <div className="relative w-full aspect-square rounded overflow-hidden group">
           <Image
             src={image}
             alt={name}
             fill
-            className="object-cover"
+            className="object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-210"
             sizes="(max-width: 768px) 100vw, 33vw"
           />
         </div>
