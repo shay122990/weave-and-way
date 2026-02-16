@@ -69,7 +69,7 @@ export default function Fabrics() {
         (f) =>
           f.name.toLowerCase().includes(term) ||
           f.category.toLowerCase().includes(term) ||
-          f.color?.toLowerCase().includes(term)
+          f.color?.toLowerCase().includes(term),
       );
     }
 
@@ -79,8 +79,9 @@ export default function Fabrics() {
 
   const paginated = filtered.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
+    currentPage * ITEMS_PER_PAGE,
   );
+
   const handleCategoryChange = (cat: string) => {
     setCategory(cat);
     const params = new URLSearchParams(searchParams.toString());
@@ -109,13 +110,16 @@ export default function Fabrics() {
         </div>
         <div className="absolute inset-0 bg-black/30 z-0" />
       </div>
-      {/* mobile fabric menu */}
+
+      {/* mobile fabric menu button */}
       <button
         onClick={() => setSideMenuOpen(true)}
         className="fixed top-1/2 left-0 transform -translate-y-1/2 z-40 bg-black text-white px-3 py-2 rounded-r-lg shadow-lg hover:bg-gray-800 block md:hidden"
       >
         fabrics →
       </button>
+
+      {/* mobile side menu */}
       <div
         className={`fixed top-0 left-0 h-full w-2/3 max-w-xs bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50
         ${sideMenuOpen ? "translate-x-0" : "-translate-x-full"} block md:hidden`}
@@ -129,6 +133,7 @@ export default function Fabrics() {
             ×
           </button>
         </div>
+
         {/* mobile categories */}
         <ul className="p-4 space-y-2">
           {categories.map((cat) => (
@@ -152,17 +157,29 @@ export default function Fabrics() {
         </ul>
       </div>
 
+      {/* overlay */}
       {sideMenuOpen && (
         <div
           onClick={() => setSideMenuOpen(false)}
           className="fixed inset-0 bg-black/30 z-40 block md:hidden"
         />
       )}
-      {/* dekstop sidebar */}
+
+      {/* MOBILE MoodBoard  */}
+      <div className="md:hidden bg-white text-black px-6 pt-6">
+        <MoodBoard fabrics={fabrics} />
+      </div>
+
+      {/* layout */}
       <div className="flex flex-col md:flex-row bg-white text-black">
         <aside
-          className={`md:w-64 w-full md:h-screen bg-gradient-to-b from-[#f5f7fa] to-[#c3cfe2]/50 p-6 border-r border-gray-300 shadow-inner 
-          ${sideMenuOpen ? "block" : "hidden"} md:block sticky top-0 z-10`}
+          className="
+            hidden md:block
+            md:w-64 w-full md:h-screen
+            bg-gradient-to-b from-[#f5f7fa] to-[#c3cfe2]/50
+            p-6 border-r border-gray-300 shadow-inner
+            sticky top-0 z-10
+          "
         >
           <div className="mb-6">
             <MoodBoard fabrics={fabrics} />
@@ -191,6 +208,7 @@ export default function Fabrics() {
             ))}
           </ul>
         </aside>
+
         {/* fabrics display */}
         <main className="flex-1 p-6 sm:p-8 md:p-10 space-y-8">
           <div className="mb-8 text-center md:text-left">
