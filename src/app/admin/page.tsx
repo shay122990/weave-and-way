@@ -45,7 +45,7 @@ export default function AdminPage() {
   }, [authorized]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -171,9 +171,9 @@ export default function AdminPage() {
           Logout
         </button>
       </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-1 bg-white text-black p-4 rounded shadow space-y-4">
+      {/* left panel */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="lg:col-span-1 bg-white text-black p-4 rounded shadow border border-gray-500 space-y-4">
           <h2 className="font-semibold text-lg">
             {editingId ? "Edit Fabric" : "Add Fabric"}
           </h2>
@@ -220,19 +220,6 @@ export default function AdminPage() {
             className="p-2 border rounded w-full"
             rows={3}
           />
-          <button
-            onClick={handleAddOrUpdateFabric}
-            className="w-full bg-black text-white py-2 rounded hover:bg-gray-800"
-          >
-            {editingId ? "Update Fabric" : "Add Fabric"}
-          </button>
-          <hr />
-          <button
-            onClick={handleDeleteAll}
-            className="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700"
-          >
-            Delete All Fabrics
-          </button>
           <div className="mt-4">
             <p className="text-sm font-medium mb-1">Upload all fabric data</p>
             <p className="text-xs text-gray-500 mb-2">
@@ -242,12 +229,27 @@ export default function AdminPage() {
               type="file"
               accept=".json"
               onChange={handleFileUpload}
-              className="block bg-black text-white p-4 rounded"
+              className="block w-full bg-black text-white p-3 rounded hover:bg-gray-700"
             />
           </div>
+          <button
+            onClick={handleAddOrUpdateFabric}
+            className="w-full bg-cyan-800 text-white py-3 rounded hover:bg-cyan-900"
+          >
+            {editingId ? "Update Fabric" : "Add Fabric"}
+          </button>
+          <div className="mt-auto pt-6">
+            <hr className="mb-6" />
+            <button
+              onClick={handleDeleteAll}
+              className="w-full bg-red-300 text-white py-3 rounded hover:bg-red-700"
+            >
+              Delete All Fabrics
+            </button>
+          </div>
         </div>
-
-        <div className="lg:col-span-2 bg-white text-black p-4 rounded shadow overflow-y-auto max-h-[80vh]">
+        {/* right panel */}
+        <div className="lg:col-span-2 bg-white text-black p-6 rounded border border-gray-500 shadow overflow-y-auto max-h-[110vh]">
           <h2 className="font-semibold text-lg mb-4">Fabrics</h2>
           <ul className="space-y-4">
             {fabrics.map((fabric) => (

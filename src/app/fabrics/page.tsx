@@ -90,7 +90,7 @@ export default function Fabrics() {
   };
 
   return (
-    <div>
+    <>
       {/* hero */}
       <div className="relative w-full h-[400px] md:h-[600px]">
         <Image
@@ -170,43 +170,47 @@ export default function Fabrics() {
         <MoodBoard fabrics={fabrics} />
       </div>
 
-      {/* layout */}
+      {/* layout md lg*/}
       <div className="flex flex-col md:flex-row bg-white text-black">
         <aside
           className="
-            hidden md:block
-            md:w-64 w-full md:h-screen
-            bg-gradient-to-b from-[#f5f7fa] to-[#c3cfe2]/50
-            p-6 border-r border-gray-300 shadow-inner
-            sticky top-0 z-10
-          "
+    hidden md:block
+    md:w-72 lg:w-80
+    shrink-0 self-stretch
+    border-r border-gray-300
+    bg-gradient-to-b from-[#f5f7fa] to-[#c3cfe2]/50
+    shadow-inner
+  "
         >
-          <div className="mb-6">
-            <MoodBoard fabrics={fabrics} />
-          </div>
+          <div className="sticky top-0 p-6">
+            <div className="mb-6">
+              <MoodBoard fabrics={fabrics} />
+            </div>
 
-          <h2 className="text-xl font-bold mb-4 tracking-wide text-gray-800 uppercase">
-            Categories
-          </h2>
-          <ul className="space-y-2">
-            {categories.map((cat) => (
-              <li key={cat}>
-                <button
-                  onClick={() => {
-                    handleCategoryChange(cat);
-                    setSideMenuOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-2 rounded-lg capitalize transition duration-200 font-medium ${
-                    category === cat
-                      ? "bg-cyan-900 text-white shadow-md"
-                      : "text-gray-900 hover:bg-[#ecf0f1] hover:text-black"
-                  }`}
-                >
-                  {cat}
-                </button>
-              </li>
-            ))}
-          </ul>
+            <h2 className="text-xl font-bold mb-4 tracking-wide text-gray-800 uppercase">
+              Categories
+            </h2>
+
+            <ul className="space-y-2">
+              {categories.map((cat) => (
+                <li key={cat}>
+                  <button
+                    onClick={() => {
+                      handleCategoryChange(cat);
+                      setSideMenuOpen(false);
+                    }}
+                    className={`w-full text-left px-4 py-2 rounded-lg capitalize transition duration-200 font-medium ${
+                      category === cat
+                        ? "bg-cyan-900 text-white shadow-md"
+                        : "text-gray-900 hover:bg-[#ecf0f1] hover:text-black"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </aside>
 
         {/* fabrics display */}
@@ -272,6 +276,6 @@ export default function Fabrics() {
           )}
         </main>
       </div>
-    </div>
+    </>
   );
 }
