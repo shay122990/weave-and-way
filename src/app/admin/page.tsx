@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Search from "./components/Search";
 
 interface Fabric {
   _id: string;
@@ -19,6 +20,7 @@ export default function AdminPage() {
   const router = useRouter();
   const [authorized, setAuthorized] = useState<boolean | null>(null);
   const [fabrics, setFabrics] = useState<Fabric[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [form, setForm] = useState<FabricForm>({
     name: "",
     title: "",
@@ -141,12 +143,24 @@ export default function AdminPage() {
     router.push("/");
   };
 
+  const filteredFabrics = fabrics.filter((fabric) => {
+    const query = searchTerm.toLowerCase().trim();
+
+    return (
+      fabric.name.toLowerCase().includes(query) ||
+      fabric.title.toLowerCase().includes(query) ||
+      fabric.category.toLowerCase().includes(query) ||
+      fabric.description.toLowerCase().includes(query) ||
+      fabric.color?.toLowerCase().includes(query)
+    );
+  });
+
   if (authorized === null) return null;
 
   if (!authorized) {
     return (
       <main className="min-h-screen flex items-center justify-center p-6">
-        <div className="bg-white  text-black p-6 rounded shadow text-center max-w-sm w-full">
+        <div className="bg-white text-black p-6 rounded shadow text-center max-w-sm w-full">
           <h2 className="text-xl font-bold mb-4">You are logged out.</h2>
           <p className="mb-4 text-gray-600">Admin access is restricted.</p>
           <button
@@ -171,12 +185,13 @@ export default function AdminPage() {
           Logout
         </button>
       </div>
-      {/* left panel */}
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
         <div className="lg:col-span-1 bg-white text-black p-4 rounded shadow border border-gray-500 space-y-4">
           <h2 className="font-semibold text-lg">
             {editingId ? "Edit Fabric" : "Add Fabric"}
           </h2>
+
           <input
             name="name"
             placeholder="Name: ex. Silk Essence 1"
@@ -220,6 +235,7 @@ export default function AdminPage() {
             className="p-2 border rounded w-full"
             rows={3}
           />
+
           <div className="mt-4">
             <p className="text-sm font-medium mb-1">Upload all fabric data</p>
             <p className="text-xs text-gray-500 mb-2">
@@ -232,12 +248,14 @@ export default function AdminPage() {
               className="block w-full bg-black text-white p-3 rounded hover:bg-gray-700"
             />
           </div>
+
           <button
             onClick={handleAddOrUpdateFabric}
             className="w-full bg-cyan-800 text-white py-3 rounded hover:bg-cyan-900"
           >
             {editingId ? "Update Fabric" : "Add Fabric"}
           </button>
+
           <div className="mt-auto pt-6">
             <hr className="mb-6" />
             <button
@@ -248,36 +266,57 @@ export default function AdminPage() {
             </button>
           </div>
         </div>
-        {/* right panel */}
+
         <div className="lg:col-span-2 bg-white text-black p-6 rounded border border-gray-500 shadow overflow-y-auto max-h-[110vh]">
           <h2 className="font-semibold text-lg mb-4">Fabrics</h2>
+
+          <Search
+            value={searchTerm}
+            onChange={setSearchTerm}
+            placeholder="Search by name, title, category, color..."
+          />
+
+          <p className="text-sm text-gray-500 mb-4">
+            Showing {filteredFabrics.length} of {fabrics.length} fabrics
+          </p>
+
           <ul className="space-y-4">
-            {fabrics.map((fabric) => (
-              <li key={fabric._id} className="border-b pb-3">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <p className="font-semibold">{fabric.name}</p>
-                    <p className="text-sm text-gray-600">
-                      {fabric.category} – {fabric.description}
-                    </p>
+            {filteredFabrics.length > 0 ? (
+              filteredFabrics.map((fabric) => (
+                <li key={fabric._id} className="border-b pb-3">
+                  <div className="flex justify-between items-center gap-4">
+                    <div>
+                      <p className="font-semibold">{fabric.name}</p>
+                      <p className="text-sm text-gray-600">{fabric.title}</p>
+                      <p className="text-sm text-gray-600">
+                        {fabric.category}
+                        {fabric.color ? ` • ${fabric.color}` : ""}
+                      </p>
+                      <p className="text-sm text-gray-600 mt-1">
+                        {fabric.description}
+                      </p>
+                    </div>
+
+                    <div className="space-x-2 shrink-0">
+                      <button
+                        onClick={() => handleEdit(fabric)}
+                        className="text-blue-500 text-sm hover:underline"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDeleteFabric(fabric._id)}
+                        className="text-red-500 text-sm hover:underline"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
-                  <div className="space-x-2">
-                    <button
-                      onClick={() => handleEdit(fabric)}
-                      className="text-blue-500 text-sm hover:underline"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDeleteFabric(fabric._id)}
-                      className="text-red-500 text-sm hover:underline"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </li>
-            ))}
+                </li>
+              ))
+            ) : (
+              <li className="text-sm text-gray-500">No fabrics found.</li>
+            )}
           </ul>
         </div>
       </div>
